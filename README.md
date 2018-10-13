@@ -1,5 +1,5 @@
 
-### This code has some tweaking from original code to make it work on IBM POWER and support GPU
+# This code has some tweaking from original code to make it work with different TensorFlow versions and support GPU
 
 ## Quick start with Docker
 ```
