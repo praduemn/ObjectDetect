@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tensor Flow Object Detection from getUserMedia</title>
+    <link rel="stylesheet" href="static/video.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="static/adapter-latest.js"></script>
+</head>
+
+<body>
+    <video id="myVideo" autoplay loop muted playsinline></video>
+    <button class="phoneAccess" id="phoneAccess" onclick="allowCameraAccess()">Start Camera Access</button>
+
+    <!--Adding layout for capturing objects-->
+
+    <button class="toggleObjectDetails" id="openObjectDetails" onclick="openObjectDetails()">iii</button>
+
+    <div id="objects">
+        <br>
+        <button class="toggleObjectDetails" onclick="closeObjectDetails()">X</button>
+        <br><br>
+        <div id="objectList">
+        </div>
+
+    </div>
+
+    <script src="static/local.js"></script>
+    <script id="objDetect" src="static/objDetect.js" data-source="myVideo" data-mirror="true" data-uploadWidth="1280" data-scoreThreshold="0.40"></script>
+    <script>
+        const allowCameraAccess = () => {
+            if (document.getElementById('myVideo').style.display == '' ||
+                document.getElementById('myVideo').style.display == 'none') {
+                document.getElementById('myVideo').style.display = 'block';
+                document.getElementById('phoneAccess').innerText = 'Stop Camera Access';
+            } else {
+                document.getElementById('myVideo').style.display = 'none';
+                document.getElementById('phoneAccess').innerText = 'Start Camera Access';
+            }
+        }
+
+        // Toggle Object details
+        const closeObjectDetails = () => {
+            document.getElementById('objects').style.display = 'none';
+            document.getElementById('openObjectDetails').style.display = 'block';
+        }
+
+        const openObjectDetails = () => {
+            document.getElementById('objects').style.display = 'block';
+            document.getElementById('openObjectDetails').style.display = 'none';
+            //document.getElementById('closeObjectDetails').style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>

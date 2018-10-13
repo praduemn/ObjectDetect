@@ -1,0 +1,25 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+ name: gpu-demo
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     run: gpu-demo
+ template:
+   metadata:
+     labels:
+       run: gpu-demo
+   spec:
+     containers:
+     - name: gpu-demo
+       image: mycluster.icp:8500/default/cuda-ppc64le
+       command:
+       - "/bin/sh"
+       - "-c"
+       args:
+       - nvidia-smi && tail -f /dev/null
+       resources:
+         limits:
+           nvidia.com/gpu: 1
